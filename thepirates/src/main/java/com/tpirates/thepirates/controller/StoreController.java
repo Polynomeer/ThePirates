@@ -1,5 +1,6 @@
 package com.tpirates.thepirates.controller;
 
+import com.tpirates.thepirates.dto.request.HolidayRequestDto;
 import com.tpirates.thepirates.dto.request.StoreRequestDto;
 import com.tpirates.thepirates.dto.response.BusinessDayDto;
 import com.tpirates.thepirates.dto.response.StoreDetailDto;
@@ -41,4 +42,8 @@ public class StoreController {
         System.out.println(storeRequestDto);
     }
 
+    @PostMapping("/{id}")
+    public void addHoliday(@PathVariable Long id, @RequestBody HolidayRequestDto holidayRequestDto){
+        System.out.println(holidayRequestDto);
+    }
 }
