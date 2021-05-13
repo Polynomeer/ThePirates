@@ -1,11 +1,15 @@
 package com.tpirates.thepirates.model;
 
+import com.tpirates.thepirates.dto.response.BusinessDayDto;
+import com.tpirates.thepirates.dto.response.StoreDetailDto;
 import com.tpirates.thepirates.dto.response.StoreDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Store {
     @Id
@@ -32,5 +36,15 @@ public class Store {
 
     public static StoreDto createStoreDto(Store store) {
         return new StoreDto(store.name, store.description, store.level, "OPEN");
+    }
+
+    public static StoreDetailDto createStoreDetailDto(Store store) {
+        List<BusinessDayDto> businessDays = store.businessTimes
+                .values()
+                .stream()
+                .map(BusinessTime::createBusinessDayDto)
+                .collect(Collectors.toList());
+
+        return new StoreDetailDto(store.id, store.name, store.description, store.level, store.address, store.phone, businessDays);
     }
 }

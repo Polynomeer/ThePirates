@@ -1,5 +1,6 @@
 package com.tpirates.thepirates.service;
 
+import com.tpirates.thepirates.dto.response.StoreDetailDto;
 import com.tpirates.thepirates.dto.response.StoreDto;
 import com.tpirates.thepirates.model.Store;
 import com.tpirates.thepirates.repository.StoreRepository;
@@ -16,9 +17,12 @@ public class StoreService {
         this.storeRepository = storeRepository;
     }
 
-    public Store findById(Long id) {
-        return storeRepository.findById(id)
+    public StoreDetailDto findById(Long id) {
+        Store store = storeRepository
+                .findById(id)
                 .orElseThrow(IllegalArgumentException::new);
+
+        return Store.createStoreDetailDto(store);
     }
 
     public List<StoreDto> findAll() {
