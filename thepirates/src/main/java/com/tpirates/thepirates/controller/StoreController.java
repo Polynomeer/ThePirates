@@ -1,12 +1,9 @@
 package com.tpirates.thepirates.controller;
 
-import com.tpirates.thepirates.dto.BusinessDayDto;
-import com.tpirates.thepirates.dto.StoreDetailDto;
-import com.tpirates.thepirates.dto.StoreDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.tpirates.thepirates.dto.response.BusinessDayDto;
+import com.tpirates.thepirates.dto.response.StoreDetailDto;
+import com.tpirates.thepirates.dto.response.StoreDto;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,4 +34,5 @@ public class StoreController {
         businessDayList.add(businessDayDto3);
         return new StoreDetailDto(1L, "인어수산", "인천소래포구 종합어시장 갑각류센터 인어수산", 2, "인천광역시 남동구 논현동 680-1 소래포구 종합어시장 1 층 1 호", "010-1111-2222", businessDayList);
     }
+
 }

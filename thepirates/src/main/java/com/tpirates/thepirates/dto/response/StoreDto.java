@@ -1,4 +1,4 @@
-package com.tpirates.thepirates.dto;
+package com.tpirates.thepirates.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
