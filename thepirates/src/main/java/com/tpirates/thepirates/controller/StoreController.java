@@ -5,6 +5,7 @@ import com.tpirates.thepirates.dto.request.StoreRequestDto;
 import com.tpirates.thepirates.dto.response.BusinessDayDto;
 import com.tpirates.thepirates.dto.response.StoreDetailDto;
 import com.tpirates.thepirates.dto.response.StoreDto;
+import com.tpirates.thepirates.service.StoreService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/stores")
 public class StoreController {
+    private final StoreService storeService;
+
+    public StoreController(StoreService storeService) {
+        this.storeService = storeService;
+    }
 
     @GetMapping
     public List<StoreDto> getStores() {
