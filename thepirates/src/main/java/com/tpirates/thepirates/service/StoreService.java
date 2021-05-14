@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,12 +43,12 @@ public class StoreService {
 
     public void addStore(StoreRequestDto storeRequestDto) {
         Store store = new Store(storeRequestDto.getName(), storeRequestDto.getOwner(), storeRequestDto.getDescription(), storeRequestDto.getLevel(), storeRequestDto.getAddress(), storeRequestDto.getPhone());
-        Map<Long, BusinessTime> businessTimes = storeRequestDto
+
+        Set<BusinessTime> businessTimes = storeRequestDto
                 .getBusinessTimes()
                 .stream()
                 .map(BusinessTimeDto::createBusinessTime)
-                .collect(Collectors.toMap(BusinessTime::getId, businessTime -> businessTime)
-                );
+                .collect(Collectors.toSet());
 
         store.setBusinessTimes(businessTimes);
         storeRepository.save(store);

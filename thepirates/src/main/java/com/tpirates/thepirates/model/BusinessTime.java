@@ -23,7 +23,4 @@ public class BusinessTime {
                 Status.getStatusByTime(businessTime.open, businessTime.close));
     }
 
-    public Long getId() {
-        return id;
-    }
 }
