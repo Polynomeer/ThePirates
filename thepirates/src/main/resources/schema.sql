@@ -22,3 +22,14 @@ CREATE TABLE IF NOT EXISTS `business_time`
         FOREIGN KEY (`store_id`)
             REFERENCES `store` (`id`)
 );
+
+CREATE TABLE IF NOT EXISTS `holiday`
+(
+    `id`       INT         NOT NULL AUTO_INCREMENT,
+    `holiday`  VARCHAR(20) NULL,
+    `store_id` INT         NOT NULL,
+    PRIMARY KEY (`id`),
+    CONSTRAINT `fk_holiday_store`
+        FOREIGN KEY (`store_id`)
+            REFERENCES `store` (`id`)
+)

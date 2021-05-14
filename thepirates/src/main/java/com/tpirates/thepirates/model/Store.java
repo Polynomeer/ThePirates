@@ -20,9 +20,12 @@ public class Store {
     private String address;
     private String phone;
 
-
     @MappedCollection(idColumn = "STORE_ID")
     private Set<BusinessTime> businessTimes = new HashSet<>();
+
+
+    @MappedCollection(idColumn = "STORE_ID")
+    private Set<Holiday> holidays = new HashSet<>();
 
     public Store(String name, String owner, String description, Integer level, String address, String phone) {
         this.name = name;
@@ -48,5 +51,9 @@ public class Store {
 
     public void setBusinessTimes(Set<BusinessTime> businessTimes) {
         this.businessTimes = businessTimes;
+    }
+
+    public void setHolidays(Set<Holiday> holidays) {
+        this.holidays = holidays;
     }
 }

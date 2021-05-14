@@ -6,15 +6,13 @@ import com.tpirates.thepirates.dto.request.StoreRequestDto;
 import com.tpirates.thepirates.dto.response.StoreDetailDto;
 import com.tpirates.thepirates.dto.response.StoreDto;
 import com.tpirates.thepirates.model.BusinessTime;
+import com.tpirates.thepirates.model.Holiday;
 import com.tpirates.thepirates.model.Store;
 import com.tpirates.thepirates.model.WeekDay;
 import com.tpirates.thepirates.repository.StoreRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,6 +49,16 @@ public class StoreService {
                 .collect(Collectors.toSet());
 
         store.setBusinessTimes(businessTimes);
+        storeRepository.save(store);
+    }
+
+    public void addHoliday(Long id, HolidayRequestDto holidayRequestDto) {
+        Store store = storeRepository
+                .findById(id)
+                .orElseThrow(IllegalArgumentException::new);
+
+        Set<Holiday> holidays = new HashSet<>(HolidayRequestDto.createHolidays(holidayRequestDto));
+        store.setHolidays(holidays);
         storeRepository.save(store);
     }
 

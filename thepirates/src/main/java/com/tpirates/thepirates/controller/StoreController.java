@@ -30,13 +30,12 @@ public class StoreController {
 
     @PostMapping
     public void addStore(@RequestBody StoreRequestDto storeRequestDto) {
-        System.out.println(storeRequestDto);
         storeService.addStore(storeRequestDto);
     }
 
     @PostMapping("/{id}")
     public void addHoliday(@PathVariable Long id, @RequestBody HolidayRequestDto holidayRequestDto) {
-        System.out.println(holidayRequestDto);
+        storeService.addHoliday(id, holidayRequestDto);
     }
 
     @DeleteMapping("/{id}")
