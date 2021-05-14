@@ -1,5 +1,6 @@
 package com.tpirates.thepirates.service;
 
+import com.tpirates.thepirates.dto.request.StoreRequestDto;
 import com.tpirates.thepirates.dto.response.StoreDetailDto;
 import com.tpirates.thepirates.dto.response.StoreDto;
 import com.tpirates.thepirates.model.Store;
@@ -31,5 +32,10 @@ public class StoreService {
                 .stream()
                 .map(Store::createStoreDto)
                 .collect(Collectors.toList());
+    }
+
+    public void addStore(StoreRequestDto storeRequestDto) {
+        Store store = new Store(storeRequestDto.getName(), storeRequestDto.getOwner(), storeRequestDto.getDescription(), storeRequestDto.getLevel(), storeRequestDto.getAddress(), storeRequestDto.getPhone());
+        storeRepository.save(store);
     }
 }

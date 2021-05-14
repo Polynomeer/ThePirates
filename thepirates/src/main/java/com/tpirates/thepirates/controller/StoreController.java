@@ -31,6 +31,7 @@ public class StoreController {
     @PostMapping
     public void addStore(@RequestBody StoreRequestDto storeRequestDto) {
         System.out.println(storeRequestDto);
+        storeService.addStore(storeRequestDto);
     }
 
     @PostMapping("/{id}")
