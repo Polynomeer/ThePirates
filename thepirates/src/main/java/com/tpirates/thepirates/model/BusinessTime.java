@@ -3,6 +3,8 @@ package com.tpirates.thepirates.model;
 import com.tpirates.thepirates.dto.response.BusinessDayDto;
 import org.springframework.data.annotation.Id;
 
+import java.text.ParseException;
+
 public class BusinessTime {
     @Id
     private Long id;
@@ -18,8 +20,9 @@ public class BusinessTime {
     }
 
     public static BusinessDayDto createBusinessDayDto(BusinessTime businessTime) {
-
-        return new BusinessDayDto(WeekDay.findDayByIndex(businessTime.day),businessTime.open, businessTime.close, "CLOSE");
+        return new BusinessDayDto(WeekDay.findDayByIndex(businessTime.day),
+                businessTime.open, businessTime.close,
+                Status.getStatusByTime(businessTime.open, businessTime.close));
     }
 
 }
