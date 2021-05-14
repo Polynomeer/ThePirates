@@ -34,6 +34,10 @@ public class Store {
         this.phone = phone;
     }
 
+    public void setBusinessTimes(Map<Long, BusinessTime> businessTimes) {
+        this.businessTimes = businessTimes;
+    }
+
     public static StoreDto createStoreDto(Store store) {
         return new StoreDto(store.name, store.description, store.level, "OPEN");
     }

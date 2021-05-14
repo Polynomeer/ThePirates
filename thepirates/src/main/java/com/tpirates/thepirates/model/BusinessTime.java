@@ -3,8 +3,6 @@ package com.tpirates.thepirates.model;
 import com.tpirates.thepirates.dto.response.BusinessDayDto;
 import org.springframework.data.annotation.Id;
 
-import java.text.ParseException;
-
 public class BusinessTime {
     @Id
     private Long id;
@@ -25,4 +23,7 @@ public class BusinessTime {
                 Status.getStatusByTime(businessTime.open, businessTime.close));
     }
 
+    public Long getId() {
+        return id;
+    }
 }

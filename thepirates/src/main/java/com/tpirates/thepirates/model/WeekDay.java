@@ -1,5 +1,7 @@
 package com.tpirates.thepirates.model;
 
+import java.util.Locale;
+
 public enum WeekDay {
     MONDAY("Monday"),
     TUESDAY("Tuesday"),
@@ -22,5 +24,11 @@ public enum WeekDay {
     public static String findDayByIndex(int index) {
         WeekDay[] weekDays = WeekDay.values();
         return weekDays[index].getDay();
+    }
+
+    public static Integer findIndexByDay(String day) {
+        return WeekDay
+                .valueOf(day.toUpperCase(Locale.ROOT))
+                .ordinal();
     }
 }
