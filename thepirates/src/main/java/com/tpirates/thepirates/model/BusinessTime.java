@@ -18,6 +18,8 @@ public class BusinessTime {
     }
 
     public static BusinessDayDto createBusinessDayDto(BusinessTime businessTime) {
-        return new BusinessDayDto("Monday", businessTime.open, businessTime.close, "CLOSE");
+
+        return new BusinessDayDto(WeekDay.findDayByIndex(businessTime.day),businessTime.open, businessTime.close, "CLOSE");
     }
+
 }

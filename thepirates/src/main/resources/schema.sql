@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `store`
 (
     `id`          INT          NOT NULL AUTO_INCREMENT,
-    `name`        VARCHAR(45)  NOT NULL,
+    `name`        VARCHAR(45)  NOT NULL UNIQUE,
     `owner`       VARCHAR(45)  NOT NULL,
     `description` VARCHAR(100) NULL,
     `level`       INT          NOT NULL,
