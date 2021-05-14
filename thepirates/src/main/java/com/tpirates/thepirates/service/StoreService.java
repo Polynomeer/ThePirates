@@ -62,4 +62,7 @@ public class StoreService {
         storeRepository.save(store);
     }
 
+    public void deleteById(Long id) {
+        storeRepository.deleteById(id);
+    }
 }

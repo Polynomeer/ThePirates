@@ -40,6 +40,6 @@ public class StoreController {
 
     @DeleteMapping("/{id}")
     public void deleteStore(@PathVariable Long id) {
-        System.out.println("Deleted store " + id);
+        storeService.deleteById(id);
     }
 }
