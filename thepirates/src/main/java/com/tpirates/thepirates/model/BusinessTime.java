@@ -3,6 +3,7 @@ package com.tpirates.thepirates.model;
 import com.tpirates.thepirates.dto.response.BusinessDayDto;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class BusinessTime {
@@ -31,10 +32,10 @@ public class BusinessTime {
         return close;
     }
 
-    public static BusinessDayDto createBusinessDayDto(BusinessTime businessTime, List<Holiday> holidays) {
+    public static BusinessDayDto createBusinessDayDto(BusinessTime businessTime, List<Holiday> holidays, LocalDateTime currentDateTime) {
         return new BusinessDayDto(WeekDay.findDayByIndex(businessTime.day),
                 businessTime.open, businessTime.close,
-                Status.getStatusByTime(businessTime.open, businessTime.close, holidays));
+                Status.getStatusByTime(businessTime.open, businessTime.close, holidays, currentDateTime));
     }
 
 }

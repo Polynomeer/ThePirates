@@ -7,6 +7,7 @@ import com.tpirates.thepirates.dto.response.StoreDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,11 +40,17 @@ public class Store {
 
     public static StoreDto createStoreDto(Store store) {
         return new StoreDto(store.name, store.description, store.level,
-                Status.getStatusByTime(new ArrayList<>(store.businessTimes), new ArrayList<>(store.holidays)));
+                Status.getStatusByTime(
+                        new ArrayList<>(store.businessTimes),
+                        new ArrayList<>(store.holidays),
+                        StoreController.currentDateTime
+                )
+        );
     }
 
     public static StoreDetailDto createStoreDetailDto(Store store) {
         List<Holiday> holidays = new ArrayList<>(store.holidays);
+
         List<BusinessDayDto> businessDays = new ArrayList<>();
         String today = StoreController.currentDateTime.getDayOfWeek().toString();
         int todayIndex = WeekDay.findIndexByDay(today);
@@ -51,15 +58,14 @@ public class Store {
         List<BusinessTime> businessTimes = new ArrayList<>(store.businessTimes);
         businessTimes.sort(Comparator.comparing(BusinessTime::getDay));
 
-        for (BusinessTime businessTime : businessTimes) {
-            System.out.println(businessTime.getDay());
-        }
+        LocalDateTime currentDateTime = StoreController.currentDateTime;
 
         for (int i = todayIndex; i < todayIndex + 3; i++) {
-            int dayIndex = i % 7;
+            int dayIndex = WeekDay.findIndexByDay(currentDateTime.getDayOfWeek().toString());
             if (dayIndex < businessTimes.size()) {
-                businessDays.add(BusinessTime.createBusinessDayDto(businessTimes.get(dayIndex), holidays));
+                businessDays.add(BusinessTime.createBusinessDayDto(businessTimes.get(dayIndex), holidays, currentDateTime));
             }
+            currentDateTime = currentDateTime.plusDays(1);
         }
 
         return new StoreDetailDto(store.id, store.name, store.description, store.level, store.address, store.phone, businessDays);
