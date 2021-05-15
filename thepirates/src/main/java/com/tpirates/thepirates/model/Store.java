@@ -1,5 +1,6 @@
 package com.tpirates.thepirates.model;
 
+import com.tpirates.thepirates.controller.StoreController;
 import com.tpirates.thepirates.dto.response.BusinessDayDto;
 import com.tpirates.thepirates.dto.response.StoreDetailDto;
 import com.tpirates.thepirates.dto.response.StoreDto;
@@ -43,11 +44,23 @@ public class Store {
 
     public static StoreDetailDto createStoreDetailDto(Store store) {
         List<Holiday> holidays = new ArrayList<>(store.holidays);
-        List<BusinessDayDto> businessDays = store.businessTimes
-                .stream()
-                .map(businessTime -> BusinessTime.createBusinessDayDto(businessTime, holidays))
-                .collect(Collectors.toList());
-        // TODO: 3일치만 받아와야 함
+        List<BusinessDayDto> businessDays = new ArrayList<>();
+        String today = StoreController.currentDateTime.getDayOfWeek().toString();
+        int todayIndex = WeekDay.findIndexByDay(today);
+
+        List<BusinessTime> businessTimes = new ArrayList<>(store.businessTimes);
+        businessTimes.sort(Comparator.comparing(BusinessTime::getDay));
+
+        for (BusinessTime businessTime : businessTimes) {
+            System.out.println(businessTime.getDay());
+        }
+
+        for (int i = todayIndex; i < todayIndex + 3; i++) {
+            int dayIndex = i % 7;
+            if (dayIndex < businessTimes.size()) {
+                businessDays.add(BusinessTime.createBusinessDayDto(businessTimes.get(dayIndex), holidays));
+            }
+        }
 
         return new StoreDetailDto(store.id, store.name, store.description, store.level, store.address, store.phone, businessDays);
     }

@@ -21,4 +21,5 @@ public class BusinessDayDto {
         this.close = close;
         this.status = status;
     }
+
 }

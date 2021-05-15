@@ -15,7 +15,6 @@ public enum Status {
     HOLIDAY;
 
     private static final Logger logger = LoggerFactory.getLogger(Status.class);
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -28,7 +27,6 @@ public enum Status {
             return Status.HOLIDAY.name();
         }
         if (currentTime.isAfter(closeTime) || currentTime.isBefore(openTime)) {
-            System.out.println("it's not the time");
             return Status.CLOSE.name();
         }
         return Status.OPEN.name();
