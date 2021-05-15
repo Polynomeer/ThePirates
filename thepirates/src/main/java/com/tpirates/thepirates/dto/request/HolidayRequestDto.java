@@ -1,8 +1,10 @@
 package com.tpirates.thepirates.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tpirates.thepirates.model.Holiday;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HolidayRequestDto {
     @JsonProperty
@@ -14,6 +16,17 @@ public class HolidayRequestDto {
     public HolidayRequestDto(Long id, List<String> holidays) {
         this.id = id;
         this.holidays = holidays;
+    }
+
+    public List<String> getHolidays() {
+        return holidays;
+    }
+
+    public static List<Holiday> createHolidays(HolidayRequestDto holidayRequestDto){
+        return holidayRequestDto.holidays
+                .stream()
+                .map(Holiday::new)
+                .collect(Collectors.toList());
     }
 
     @Override

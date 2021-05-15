@@ -36,6 +36,34 @@ public class StoreRequestDto {
         this.businessTimes = businessTimes;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public List<BusinessTimeDto> getBusinessTimes() {
+        return businessTimes;
+    }
+
     @Override
     public String toString() {
         return "StoreRequestDto{" +

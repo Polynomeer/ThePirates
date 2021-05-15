@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `store`
 (
     `id`          INT          NOT NULL AUTO_INCREMENT,
-    `name`        VARCHAR(45)  NOT NULL,
+    `name`        VARCHAR(45)  NOT NULL UNIQUE,
     `owner`       VARCHAR(45)  NOT NULL,
     `description` VARCHAR(100) NULL,
     `level`       INT          NOT NULL,
@@ -22,3 +22,14 @@ CREATE TABLE IF NOT EXISTS `business_time`
         FOREIGN KEY (`store_id`)
             REFERENCES `store` (`id`)
 );
+
+CREATE TABLE IF NOT EXISTS `holiday`
+(
+    `id`       INT         NOT NULL AUTO_INCREMENT,
+    `holiday`  VARCHAR(20) NULL,
+    `store_id` INT         NOT NULL,
+    PRIMARY KEY (`id`),
+    CONSTRAINT `fk_holiday_store`
+        FOREIGN KEY (`store_id`)
+            REFERENCES `store` (`id`)
+)
