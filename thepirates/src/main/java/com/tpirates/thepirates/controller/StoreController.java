@@ -7,11 +7,14 @@ import com.tpirates.thepirates.dto.response.StoreDto;
 import com.tpirates.thepirates.service.StoreService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/stores")
 public class StoreController {
+    public static final LocalDateTime currentDateTime = LocalDateTime.now();
+
     private final StoreService storeService;
 
     public StoreController(StoreService storeService) {

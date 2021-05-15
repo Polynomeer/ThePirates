@@ -11,4 +11,16 @@ public class Holiday {
     public Holiday(String holiday) {
         this.holiday = holiday;
     }
+
+    public String getHoliday() {
+        return holiday;
+    }
+
+    @Override
+    public String toString() {
+        return "Holiday{" +
+                "id=" + id +
+                ", holiday='" + holiday + '\'' +
+                '}';
+    }
 }

@@ -37,14 +37,17 @@ public class Store {
     }
 
     public static StoreDto createStoreDto(Store store) {
-        return new StoreDto(store.name, store.description, store.level, "OPEN");
+        return new StoreDto(store.name, store.description, store.level,
+                Status.getStatusByTime(new ArrayList<>(store.businessTimes), new ArrayList<>(store.holidays)));
     }
 
     public static StoreDetailDto createStoreDetailDto(Store store) {
+        List<Holiday> holidays = new ArrayList<>(store.holidays);
         List<BusinessDayDto> businessDays = store.businessTimes
                 .stream()
-                .map(BusinessTime::createBusinessDayDto)
+                .map(businessTime -> BusinessTime.createBusinessDayDto(businessTime, holidays))
                 .collect(Collectors.toList());
+        // TODO: 3일치만 받아와야 함
 
         return new StoreDetailDto(store.id, store.name, store.description, store.level, store.address, store.phone, businessDays);
     }
