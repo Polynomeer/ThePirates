@@ -17,10 +17,17 @@
 
 ![2021-05-15_13-50-44](https://user-images.githubusercontent.com/62940574/118348379-d643a500-b584-11eb-87da-5cd85ba001a4.png)
 
-+ 개발 시 포스트맨을 사용하였고 public으로 공개되어 있습니다.
++) 개발 시 포스트맨을 사용하였고 public으로 공개되어 있습니다.
 
 ![image](https://user-images.githubusercontent.com/62940574/118348483-a0eb8700-b585-11eb-9a15-ed99e8a61dca.png)
 
+### 사용방법
+
+**사용예시**
+- `PUT localhost:8080/stores`으로 점포를 등록한다. (주어진 JSON을 request body에 넣고 두 개를 등록해본다.)
+- `PUT localhost:8080/stores/{store_id}`으로 해당 점포의 휴무일을 등록한다.
+- `GET localhost:8080/stores`으로 점포 목록을 조회한다.
+- `GET localhost:8080/stores/{store_id}`으로 점포 하나의 상세정보를 조회한다.
 
 ## 2. 테이블 생성 SQL
 
