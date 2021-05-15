@@ -28,6 +28,10 @@ public enum Status {
             return Status.HOLIDAY.name();
         }
 
+        if (currentTime.isAfter(openTime) && close.equals("24:00")) {
+            return Status.OPEN.name();
+        }
+
         if (currentTime.isAfter(closeTime) || currentTime.isBefore(openTime)) {
             return Status.CLOSE.name();
         }
@@ -70,6 +74,10 @@ public enum Status {
             LocalTime currentTime = currentDateTime.toLocalTime();
             LocalTime openTime = LocalTime.parse(businessTime.getOpen(), timeFormatter);
             LocalTime closeTime = LocalTime.parse(businessTime.getClose(), timeFormatter);
+
+            if (currentTime.isAfter(openTime) && businessTime.getClose().equals("24:00")) {
+                return Status.OPEN.name();
+            }
 
             if (currentTime.isAfter(closeTime) || currentTime.isBefore(openTime)) {
                 return Status.CLOSE.name();
