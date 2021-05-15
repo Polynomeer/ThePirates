@@ -8,6 +8,19 @@
 - Language & Framework: `JAVA`, `Spring`, `Spring Data JDBC`
 - Database: H2(In-Memory)
 
+### 환경설정
+
+1. `git clone https://github.com/Polynomeer/ThePirates.git`을 한다.
+2. IntelliJ에서 프로젝트를 import한다.
+3. 프로젝트를 실행한 다음, API 문서를 참조하여 실행한다.
+4. `localhost:8080/h2-console`로 브라우저를 통해 DB를 확인할 수 있다. (접속 정보는 아래의 그림 참조)
+![2021-05-15_13-50-44](https://user-images.githubusercontent.com/62940574/118348379-d643a500-b584-11eb-87da-5cd85ba001a4.png)
+
++ 개발 시 포스트맨을 사용하였고 public으로 공개되어 있습니다.
+
+![image](https://user-images.githubusercontent.com/62940574/118348483-a0eb8700-b585-11eb-9a15-ed99e8a61dca.png)
+
+
 ## 2. 테이블 생성 SQL
 
 ```sql
@@ -170,7 +183,16 @@ GET /stores/{store_id}
 }
 ```
 
-**Holidy Create**
+**Store Delete**
+
+- Description: 해당 점포를 삭제
+- Request
+
+```http
+DELETE /stores/{store_id}
+```
+
+**Holiday Create**
 
 - Description: 점포의 휴무일의 정보를 DB에 저장
 - Request
@@ -189,4 +211,3 @@ POST /stores/{store_id}
     ]
 }
 ```
-
