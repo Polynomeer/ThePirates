@@ -4,12 +4,9 @@ import com.tpirates.thepirates.controller.StoreController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 public enum Status {
@@ -23,19 +20,16 @@ public enum Status {
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public static String getStatusByTime(String open, String close, List<Holiday> holidays) {
-        try {
-            Date currentTime = Date.from(StoreController.currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
-            Date openTime = new Date(simpleDateFormat.parse(open).getTime());
-            Date closeTime = new Date(simpleDateFormat.parse(close).getTime());
+        LocalTime currentTime = StoreController.currentDateTime.toLocalTime();
+        LocalTime openTime = LocalTime.parse(open, timeFormatter);
+        LocalTime closeTime = LocalTime.parse(close, timeFormatter);
 
-            if (isHoliday(holidays)) {
-                return Status.HOLIDAY.name();
-            }
-            if (currentTime.after(closeTime) || currentTime.before(openTime)) {
-                return Status.CLOSE.name();
-            }
-        } catch (ParseException e) {
-            logger.info("Cannot parse open or close time.\n" + e.getMessage());
+        if (isHoliday(holidays)) {
+            return Status.HOLIDAY.name();
+        }
+        if (currentTime.isAfter(closeTime) || currentTime.isBefore(openTime)) {
+            System.out.println("it's not the time");
+            return Status.CLOSE.name();
         }
         return Status.OPEN.name();
     }
@@ -73,18 +67,12 @@ public enum Status {
         }
 
         for (BusinessTime businessTime : businessTimes) {
-            try {
-                // TODO: fix to LocalDateTime
-                Date currentTime = Date.from(StoreController.currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
-                Date openTime = new Date(simpleDateFormat.parse(businessTime.getOpen()).getTime());
-                Date closeTime = new Date(simpleDateFormat.parse(businessTime.getClose()).getTime());
+            LocalTime currentTime = StoreController.currentDateTime.toLocalTime();
+            LocalTime openTime = LocalTime.parse(businessTime.getOpen(), timeFormatter);
+            LocalTime closeTime = LocalTime.parse(businessTime.getClose(), timeFormatter);
 
-                if (currentTime.after(closeTime) || currentTime.before(openTime)) {
-                    System.out.println(openTime + " " + closeTime + " " + currentTime);
-                    return Status.CLOSE.name();
-                }
-            } catch (ParseException e) {
-                logger.info("Cannot parse open or close time.\n" + e.getMessage());
+            if (currentTime.isAfter(closeTime) || currentTime.isBefore(openTime)) {
+                return Status.CLOSE.name();
             }
         }
 
