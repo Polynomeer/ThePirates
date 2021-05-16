@@ -17,7 +17,7 @@
 
 ![2021-05-15_13-50-44](https://user-images.githubusercontent.com/62940574/118348379-d643a500-b584-11eb-87da-5cd85ba001a4.png)
 
-+) 개발 시 포스트맨을 사용하였고 public으로 공개되어 있습니다.
+\* 개발 시 포스트맨을 사용하였고 public으로 공개되어 있습니다.
 
 ![image](https://user-images.githubusercontent.com/62940574/118348483-a0eb8700-b585-11eb-9a15-ed99e8a61dca.png)
 
