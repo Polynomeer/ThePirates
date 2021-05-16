@@ -8,12 +8,12 @@
 - Language & Framework: `JAVA`, `Spring`, `Spring Data JDBC`
 - Database: H2(In-Memory)
 
-### 환경설정
+### 환경설정 방법1
 
-1. `git clone https://github.com/Polynomeer/ThePirates.git`을 한다.
-2. IntelliJ에서 프로젝트를 import한다.
-3. 프로젝트를 실행한 다음, API 문서를 참조하여 실행한다.
-4. `localhost:8080/h2-console`로 브라우저를 통해 DB를 확인할 수 있다. (접속 정보는 아래의 그림 참조)
+1. `git clone https://github.com/Polynomeer/ThePirates.git`을 합니다.
+2. IntelliJ에서 프로젝트를 import합니다.
+3. 프로젝트를 실행한 다음, API 문서를 참조하여 실행합니다.
+4. `localhost:8080/h2-console`로 브라우저를 통해 DB를 확인할 수 있습니다. (접속 정보는 아래의 그림 참조)
 
 ![2021-05-15_13-50-44](https://user-images.githubusercontent.com/62940574/118348379-d643a500-b584-11eb-87da-5cd85ba001a4.png)
 
@@ -21,13 +21,26 @@
 
 ![image](https://user-images.githubusercontent.com/62940574/118348483-a0eb8700-b585-11eb-9a15-ed99e8a61dca.png)
 
+### 환경설정 방법2
+
+1. `git clone https://github.com/Polynomeer/ThePirates.git`을 합니다.
+2. Gradle 프로젝트가 있는 디렉터리로 이동하여 다음 명령으로 빌드를 합니다. `./gradlew build`
+3. `/ThePirates/thepirates/build/libs/ThePirates-0.0.1-SNAPSHOT.jar`경로에 생성된 jar파일을 확인하고, 해당경로로 이동합니다.
+4. `java -jar ThePirates-0.0.1-SNAPSHOT.jar`명령어로 jar파일을 실행합니다.
+
+![image](https://user-images.githubusercontent.com/62940574/118399828-f87b1700-b699-11eb-867a-719db1bc272f.png)
+
+5. 또 다른 터미널을 열어서 curl명령어로 테스트를 합니다. [API Documents](https://github.com/Polynomeer/ThePirates/wiki/API-Documents)를 참조하여 curl명령어로 터미널에서 바로 실행이 가능합니다.
+
+![image](https://user-images.githubusercontent.com/62940574/118399853-1183c800-b69a-11eb-873c-fa2d7639d45f.png)
+
 ### 사용방법
 
 **사용예시**
-- `PUT localhost:8080/stores`으로 점포를 등록한다. (주어진 JSON을 request body에 넣고 두 개를 등록해본다.)
-- `PUT localhost:8080/stores/{store_id}`으로 해당 점포의 휴무일을 등록한다.
-- `GET localhost:8080/stores`으로 점포 목록을 조회한다.
-- `GET localhost:8080/stores/{store_id}`으로 점포 하나의 상세정보를 조회한다.
+- `PUT localhost:8080/stores`으로 점포를 등록한다. (주어진 JSON을 request body에 넣고 두 개를 등록해봅니다.)
+- `PUT localhost:8080/stores/{store_id}`으로 해당 점포의 휴무일을 등록합니다.
+- `GET localhost:8080/stores`으로 점포 목록을 조회합니다.
+- `GET localhost:8080/stores/{store_id}`으로 점포 하나의 상세정보를 조회합니다.
 
 ## 2. 테이블 생성 SQL
 
